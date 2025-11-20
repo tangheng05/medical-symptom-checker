@@ -46,6 +46,9 @@ instance/
 .env
 .env.local
 
+# Vercel
+.vercel
+
 # Old/deprecated files
 main.py
 

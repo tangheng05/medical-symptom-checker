@@ -20,9 +20,18 @@ Version: 2.0 (Production Ready)
 """
 
 import os
+import sys
 import logging
+from pathlib import Path
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify
+
+# Fix imports for Vercel serverless environment
+if os.environ.get('VERCEL'):
+    # Running on Vercel
+    current_dir = Path(__file__).parent
+    sys.path.insert(0, str(current_dir))
+
 from config import config, DATA_DIR
 from utils import DataLoader, DiagnosisEngine, RecommendationEngine
 
@@ -35,7 +44,7 @@ logger = logging.getLogger(__name__)
 
 # Initialize Flask app
 app = Flask(__name__)
-env = os.environ.get('FLASK_ENV', 'development')
+env = os.environ.get('FLASK_ENV', 'production' if os.environ.get('VERCEL') else 'development')
 app.config.from_object(config[env])
 
 # Initialize data loader and engines
