@@ -1,0 +1,134 @@
+{
+  "critical_symptoms": {
+    "high_fever": {
+      "threshold": 40.0,
+      "message": "Very high fever (≥40°C)"
+    },
+    "severe_breathing": {
+      "threshold": 7,
+      "symptom": "difficulty_breathing",
+      "message": "Severe difficulty breathing"
+    },
+    "severe_chest_pain": {
+      "threshold": 7,
+      "symptom": "chest_pain",
+      "message": "Severe chest pain"
+    },
+    "fever_with_headache": {
+      "temp_threshold": 39.4,
+      "symptom_threshold": 8,
+      "symptom": "headache",
+      "message": "High fever with severe headache"
+    },
+    "confusion": {
+      "threshold": 5,
+      "symptom": "confusion",
+      "message": "Mental confusion"
+    }
+  },
+  "disease_specific": {
+    "COVID-19": {
+      "medical": [
+        "Get tested for COVID-19",
+        "Self-isolate until results are available"
+      ]
+    },
+    "Strep Throat": {
+      "medical": [
+        "Throat culture or rapid strep test recommended"
+      ]
+    },
+    "Streptococcal Pharyngitis": {
+      "medical": [
+        "Throat culture or rapid strep test recommended"
+      ]
+    },
+    "Pneumonia": {
+      "medical": [
+        "Chest X-ray may be required"
+      ]
+    }
+  },
+  "urgency_levels": {
+    "urgent": {
+      "message": "Visit emergency room or urgent care within 2-4 hours"
+    },
+    "warning": {
+      "messages": [
+        "Schedule a doctor's appointment within 24-48 hours",
+        "Consider telehealth consultation"
+      ]
+    }
+  },
+  "temperature_care": {
+    "high": {
+      "threshold": 38.5,
+      "recommendations": [
+        "Take acetaminophen or ibuprofen for fever (Current: {temp}°C)",
+        "Monitor temperature every 2-3 hours",
+        "Use cool compress on forehead"
+      ]
+    },
+    "moderate": {
+      "threshold": 37.8,
+      "recommendations": [
+        "Monitor temperature regularly"
+      ]
+    }
+  },
+  "symptom_care": {
+    "cough": {
+      "threshold": 6,
+      "recommendations": [
+        "Use cough suppressant or expectorant as appropriate",
+        "Use honey and warm liquids to soothe cough"
+      ]
+    },
+    "sore_throat": {
+      "threshold": 6,
+      "recommendations": [
+        "Gargle with warm salt water 3-4 times daily",
+        "Use throat lozenges or sprays"
+      ]
+    },
+    "stuffy_nose": {
+      "threshold": 6,
+      "recommendations": [
+        "Use saline nasal spray or rinse",
+        "Run a cool-mist humidifier",
+        "Stay well-hydrated"
+      ]
+    },
+    "runny_nose": {
+      "threshold": 6,
+      "recommendations": [
+        "Use saline nasal spray or rinse",
+        "Run a cool-mist humidifier",
+        "Stay well-hydrated"
+      ]
+    },
+    "headache": {
+      "threshold": 6,
+      "recommendations": [
+        "Rest in a quiet, dark room",
+        "Apply cold/warm compress to head or neck"
+      ]
+    }
+  },
+  "general_care": {
+    "symptoms": ["fatigue", "body_ache", "fever"],
+    "threshold": 5,
+    "recommendations": [
+      "Get plenty of rest (7-9 hours)",
+      "Stay hydrated (8-10 glasses of water daily)",
+      "Eat nutritious, easily digestible foods"
+    ]
+  },
+  "prevention": [
+    "Wash hands frequently for 20+ seconds",
+    "Avoid close contact with others if symptoms persist",
+    "Cover coughs and sneezes with elbow",
+    "Disinfect frequently touched surfaces"
+  ]
+}
+
