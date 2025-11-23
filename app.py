@@ -50,19 +50,38 @@ app = Flask(__name__)
 env = os.environ.get('FLASK_ENV', 'production' if os.environ.get('VERCEL') else 'development')
 app.config.from_object(config[env])
 
+logger.info(f"Starting initialization in {env} mode")
+logger.info(f"BASE_DIR from config: {config[env].__dict__ if hasattr(config[env], '__dict__') else 'N/A'}")
+
 # Initialize data loader and engines
 try:
+    logger.info(f"DATA_DIR path: {DATA_DIR}")
+    logger.info(f"DATA_DIR exists: {DATA_DIR.exists()}")
+    
+    if DATA_DIR.exists():
+        logger.info(f"Files in DATA_DIR: {list(DATA_DIR.iterdir())}")
+    
     data_loader = DataLoader(DATA_DIR)
+    logger.info("DataLoader created")
+    
     disease_database = data_loader.get_diseases()
+    logger.info(f"Diseases loaded: {len(disease_database)} diseases")
+    
     recommendations_config = data_loader.get_recommendations_config()
+    logger.info("Recommendations config loaded")
 
     diagnosis_engine = DiagnosisEngine(disease_database)
+    logger.info("DiagnosisEngine initialized")
+    
     recommendation_engine = RecommendationEngine(recommendations_config)
+    logger.info("RecommendationEngine initialized")
 
     logger.info(f"Application initialized successfully in {env} mode")
     logger.info(f"Loaded {len(disease_database)} diseases from database")
 except Exception as e:
-    logger.error(f"Failed to initialize application: {e}")
+    logger.error(f"Failed to initialize application: {e}", exc_info=True)
+    logger.error(f"Current working directory: {Path.cwd()}")
+    logger.error(f"Script directory: {Path(__file__).parent}")
     raise
 
 
