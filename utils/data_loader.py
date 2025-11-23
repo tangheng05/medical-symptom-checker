@@ -31,28 +31,39 @@ class DataLoader:
             Dictionary containing the JSON data
         """
         if use_cache and filename in self._cache:
+            logger.debug(f"Using cached data for {filename}")
             return self._cache[filename]
 
         file_path = self.data_dir / filename
 
         try:
+            # Log the paths for debugging
+            logger.info(f"Attempting to load: {file_path}")
+            logger.info(f"File exists: {file_path.exists()}")
+            logger.info(f"Data dir exists: {self.data_dir.exists()}")
+            
+            if self.data_dir.exists():
+                logger.info(f"Files in data dir: {list(self.data_dir.iterdir())}")
+            
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
 
             if use_cache:
                 self._cache[filename] = data
 
-            logger.info(f"Loaded {filename} successfully")
+            logger.info(f"Loaded {filename} successfully ({len(str(data))} bytes)")
             return data
 
         except FileNotFoundError:
             logger.error(f"File not found: {file_path}")
+            logger.error(f"Current working directory: {Path.cwd()}")
+            logger.error(f"Data directory: {self.data_dir}")
             raise
         except json.JSONDecodeError as e:
             logger.error(f"Invalid JSON in {filename}: {e}")
             raise
         except Exception as e:
-            logger.error(f"Error loading {filename}: {e}")
+            logger.error(f"Error loading {filename}: {e}", exc_info=True)
             raise
 
     def get_diseases(self) -> Dict[str, Any]:

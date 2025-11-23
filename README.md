@@ -77,6 +77,33 @@ An intelligent symptom diagnosis system that analyzes patient symptoms and provi
 3. **Analyze**: Click "Analyze Symptoms" to get results
 4. **Review Results**: Check diagnoses, confidence scores, and recommendations
 
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+This app is configured for easy deployment to Vercel:
+
+1. **Push to GitHub:**
+   ```bash
+   git push origin main
+   ```
+
+2. **Deploy to Vercel:**
+   - Visit [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Click "Deploy"
+   - Your app will be live at `your-project.vercel.app`
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions, troubleshooting, and configuration options.
+
+### Other Platforms
+
+This Flask app can also be deployed to:
+- **Heroku**: Add a `Procfile` with `web: gunicorn app:app`
+- **PythonAnywhere**: Upload files and configure WSGI
+- **Railway**: Auto-detects Flask apps
+- **Render**: Configure as a web service
+
 ## 📁 Project Structure
 
 ```
@@ -84,6 +111,9 @@ medical-symptom-checker/
 ├── app.py                    # Main Flask application
 ├── config.py                 # Configuration settings
 ├── requirements.txt          # Python dependencies
+├── vercel.json               # Vercel deployment config
+├── api/                      # Vercel serverless functions
+│   └── index.py              # Entry point for Vercel
 ├── data/                     # JSON data files
 │   ├── diseases.json         # Disease database
 │   └── recommendations.json  # Medical recommendations

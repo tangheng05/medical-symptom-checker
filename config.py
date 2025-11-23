@@ -8,8 +8,12 @@ Centralized configuration for the Medical Symptom Checker application.
 import os
 from pathlib import Path
 
-# Base directory
-BASE_DIR = Path(__file__).resolve().parent
+# Base directory - handle both local and Vercel environments
+if os.environ.get('VERCEL'):
+    # On Vercel, use absolute path resolution
+    BASE_DIR = Path(__file__).resolve().parent
+else:
+    BASE_DIR = Path(__file__).resolve().parent
 
 # Data directory
 DATA_DIR = BASE_DIR / 'data'

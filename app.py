@@ -28,9 +28,12 @@ from flask import Flask, render_template, request, jsonify
 
 # Fix imports for Vercel serverless environment
 if os.environ.get('VERCEL'):
-    # Running on Vercel
-    current_dir = Path(__file__).parent
-    sys.path.insert(0, str(current_dir))
+    # Running on Vercel - ensure correct paths
+    current_dir = Path(__file__).resolve().parent
+    if str(current_dir) not in sys.path:
+        sys.path.insert(0, str(current_dir))
+    logger_temp = logging.getLogger(__name__)
+    logger_temp.info(f"Vercel environment detected. Working dir: {current_dir}")
 
 from config import config, DATA_DIR
 from utils import DataLoader, DiagnosisEngine, RecommendationEngine
