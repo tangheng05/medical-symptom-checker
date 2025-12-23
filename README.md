@@ -51,7 +51,7 @@ An intelligent symptom diagnosis system that analyzes patient symptoms and provi
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/medical-symptom-checker.git
+   git clone https://github.com/tangheng05/medical-symptom-checker.git
    cd medical-symptom-checker
    ```
 
